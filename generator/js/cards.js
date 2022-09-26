@@ -300,7 +300,17 @@ function card_element_empty(params, card_data, options) {
     return '';
 }
 
+function card_element_small(params, card_data, options) {
+    return '<div style="font-size:9pt">'
+}
+
+function card_element_smallend(params, card_data, options) {
+    return '</div>'
+}
+
 var card_element_generators = {
+    small:card_element_small,
+    smallend:card_element_smallend,
     subtitle: card_element_subtitle,
     property: card_element_property,
     rule: card_element_ruler,

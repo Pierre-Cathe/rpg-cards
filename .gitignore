@@ -3,6 +3,7 @@
 /generator/js/*.d.ts
 /generator/js/*.map
 /generator/js/icons.js
+/generator/lib
 /node_modules/
 /package-lock.json
 /temp.zip

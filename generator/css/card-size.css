@@ -52,6 +52,7 @@ page[size="25x35"] {
 .card {
     width:2.5in;
     height:3.5in;
+    margin:10px;
 }
 
 /* Business card size */
