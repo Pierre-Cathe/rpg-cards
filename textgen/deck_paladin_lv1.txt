@@ -1,0 +1,8 @@
+if (card_has_tag(card, "paladin") && card_has_tag(card, "niveau1")) {
+    return true;
+}
+if (card.title == "Communication avec les animaux" || card.title == "Frappe piégeuse"){
+    return true;
+}
+return false;
+                    
