@@ -326,9 +326,20 @@ function card_element_smallend(params, card_data, options) {
     return '</div>'
 }
 
+function card_element_size(params, card_data, options) {
+    var size = params[0] || "9";
+    return '<div style="font-size:' + size + 'pt">'
+}
+
+function card_element_sizeend(params, card_data, options) {
+    return '</div>'
+}
+
 var card_element_generators = {
     small:card_element_small,
     smallend:card_element_smallend,
+    size:card_element_size,
+    sizeend:card_element_sizeend,
     subtitle: card_element_subtitle,
     property: card_element_property,
     rule: card_element_ruler,
@@ -354,7 +365,7 @@ var card_element_generators = {
 
 function card_generate_contents(contents, card_data, options) {
     var result = "";
-   
+
     var html = contents.map(function (value) {
         var parts = card_data_split_params(value);
         var element_name = parts[0];
@@ -475,7 +486,7 @@ function card_generate_back(data, options) {
     var $tmpCardContainer = $('<div style="position:absolute;visibility:hidden;pointer-events:none;"></div>');
     var $tmpCard = $('<div class="card" ' + card_style + '><div class="card-back"><div class="card-back-inner"><div class="card-back-icon"></div></div></div></div>');
     $('#preview-container').append($tmpCardContainer.append($tmpCard));
-    
+
     var $tmpCardInner = $tmpCard.find('.card-back-inner');
     var innerWidth = $tmpCardInner.width();
     var innerHeight = $tmpCardInner.height();
@@ -624,7 +635,7 @@ function card_pages_wrap(pages, options) {
         // style += 'padding-right: calc( (' + (parsedPageWidth.number + parsedPageWidth.mu) + ' - ' + options.card_width + ' * ' + options.page_columns + ' ) / 2);';
         style += '"';
         style = add_size_to_style(style, parsedPageWidth.number + parsedPageWidth.mu, parsedPageHeight.number + parsedPageHeight.mu);
-        
+
         var z = options.page_zoom / 100;
         var zoomWidth = parsedPageWidth.number * z;
         var zoomHeight = parsedPageHeight.number * z;
