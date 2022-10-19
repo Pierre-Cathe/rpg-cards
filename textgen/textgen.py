@@ -6,16 +6,34 @@ CONFS = []
 MAGICIEN = {
     "fichier": "magicien.csv",
     "icone": "fairy-wand",
-    "couleur": "maroon"
+    "couleur": "maroon",
+    "tag": "magicien"
 }
 CONFS.append(MAGICIEN)
 
 PALADIN = {
     "fichier": "paladin.csv",
     "icone": "templar-shield",
-    "couleur": "navy"
+    "couleur": "navy",
+    "tag": "paladin"
 }
 CONFS.append(PALADIN)
+
+DRUIDE = {
+    "fichier": "druide.csv",
+    "icone": "oak-leaf",
+    "couleur": "darkgreen",
+    "tag": "druide"
+}
+CONFS.append(DRUIDE)
+
+DRUIDE = {
+    "fichier": "ranger.csv",
+    "icone": "hooded-figure",
+    "couleur": "saddlebrown",
+    "tag": "ranger"
+}
+CONFS.append(DRUIDE)
 
 
 def clean_up(row):
@@ -31,14 +49,17 @@ def clean_up(row):
     return row
 
 
-def get_tags(row):
+def get_tags(row, conf):
     tags = []
     tags.append("sort")
+
+    # Tag de la classe
     classe = row['Classe']
-    if classe == "Magicien":
-        tags.append("magicien")
-    elif classe == "Paladin":
-        tags.append("paladin")
+    tags.append(conf["tag"])
+
+    # Tag du niveau
+    niveau = row['Niveau']
+    tags.append(f"niveau{niveau}")
     return tags
 
 
@@ -61,12 +82,13 @@ def generate_cards(conf):
                                      f"property | Durée d'incantation | {duree}",
                                      f"property | Portée | {row['Portée']}",
                                      f"property | Composantes | {row['Composantes']}",
+                                     f"property | Durée | {row['Durée']}",
                                      "rule",
                                      "fill | 2",
                                      f"text | {row['Description']}",
                                      "fill | 3",
                                     ]
-            card_data["tags"] = get_tags(row)
+            card_data["tags"] = get_tags(row, conf)
             cards.append(str(card_data))
     return cards
 
